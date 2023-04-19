@@ -1,3 +1,4 @@
+// https://github.com/devoups-off/sorting-app/blob/master/src/App.tsx
 import React, { useEffect, useState } from 'react'
 import styles from '@/styles/Sorting.module.css'
 
@@ -10,6 +11,7 @@ const SortingComponent: React.FC<ISortingProps> = ({arrayModel}) => {
   const [delay, setDelay] = useState<number>(10);
   const [isSorting, setIsSorting] = useState<boolean>(false)
   const [reset, setReset] = useState<boolean>(false)
+  const [time, setTime] = useState(0)
 
   const handleReset = (array: number[]) => {
     setReset(true)
@@ -19,8 +21,9 @@ const SortingComponent: React.FC<ISortingProps> = ({arrayModel}) => {
     )
   }
 
-  const initSorting = async () => {
-    console.log("Inicio");
+  const bubbleSorting = async () => {
+    let begin = Date.now()
+
     setIsSorting(true)
     for (let i = 0; i < sortedValues.length; i++) {
       for (let j = 0; j < sortedValues.length - i - 1; j++) {
@@ -35,6 +38,36 @@ const SortingComponent: React.FC<ISortingProps> = ({arrayModel}) => {
     }
     setIsSorting(false)
     setReset(false)
+
+    let end = Date.now()
+    setTime((-begin+end)/1000);
+  }
+
+  const insertionSort = async () => {
+    let begin = Date.now()
+
+    setIsSorting(true);
+    let n = sortedValues.length;
+
+    for (let i = 1; i < n; i++) {
+      // Choosing the first element in our unsorted subarray
+      let current = sortedValues[i];
+      // The last element of our sorted subarray
+      let j = i-1; 
+      while ((j > -1) && (current < sortedValues[j])) {
+        sortedValues[j+1] = sortedValues[j];
+          j--;
+      }
+      sortedValues[j+1] = current;
+
+      await sleep(delay);
+      setSortedValues([...sortedValues]);
+    }
+    setReset(false)
+    setIsSorting(false);
+
+    let end = Date.now()
+    setTime((-begin+end)/1000);
   }
 
   function sleep(ms: number) {
@@ -56,8 +89,8 @@ const SortingComponent: React.FC<ISortingProps> = ({arrayModel}) => {
 
       </div>
       <div className={styles.sortingButtonsContainer}>
-        <button disabled={isSorting} onClick={() => initSorting()} className={styles.sortingButtons}>Bubble Sort</button>
-        <button disabled={isSorting} className={styles.sortingButtons}>Quick Sort</button>
+        <button disabled={isSorting} onClick={() => bubbleSorting()} className={styles.sortingButtons}>Bubble Sort</button>
+        <button disabled={isSorting} onClick={() => insertionSort()} className={styles.sortingButtons}>Insertion Sort</button>
         <button disabled={reset} className={styles.sortingButtons} onClick={() => handleReset(arrayModel)}>Reset</button>
         <label htmlFor="delay">Delay
           <input 
@@ -68,6 +101,7 @@ const SortingComponent: React.FC<ISortingProps> = ({arrayModel}) => {
             onChange={(e) => setDelay(parseInt(e.target.value))}
           />
         </label>
+        <h2>Time: {time}</h2>
       </div>
     </div>
   )
