@@ -4,8 +4,14 @@
   border: 0;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 body {
-  background-color: #010F94;
+  background-color: rgb(42, 42, 42);
   padding: 0;
   margin: 0;
 }
@@ -23,4 +29,9 @@ h2 {
 h3 {
   color: #fff;
   font-weight: 400;
+}
+
+label{
+  color: #fff;
+  width: fit-content;
 }
