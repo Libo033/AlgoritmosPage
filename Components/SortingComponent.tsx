@@ -31,13 +31,43 @@ const SortingComponent: React.FC<ISortingProps> = ({arrayModel}) => {
           const temp = sortedValues[j];
           sortedValues[j] = sortedValues[j + 1];
           sortedValues[j + 1] = temp;
-          await sleep(delay);
+          delay !== undefined? await sleep(delay) : await sleep(0) ;
           setSortedValues([...sortedValues]);
         }
       }
     }
     setIsSorting(false)
     setReset(false)
+
+    let end = Date.now()
+    setTime((-begin+end)/1000);
+  }
+
+  const gnomeSort = async () => {
+    let begin = Date.now()
+
+    setIsSorting(true);
+    let pos = 1;
+
+    while (pos < sortedValues.length) {
+      if (pos == 0) pos++;
+        
+      if (sortedValues[pos] >= sortedValues[pos - 1]){
+        pos++;
+      } else {
+        let temp = 0;
+        temp = sortedValues[pos];
+        sortedValues[pos] = sortedValues[pos - 1];
+        sortedValues[pos - 1] = temp;
+        pos--;
+      }
+
+      delay !== undefined? await sleep(delay) : await sleep(0) ;
+      setSortedValues([...sortedValues]);
+    }
+
+    setReset(false)
+    setIsSorting(false);
 
     let end = Date.now()
     setTime((-begin+end)/1000);
@@ -60,7 +90,7 @@ const SortingComponent: React.FC<ISortingProps> = ({arrayModel}) => {
       }
       sortedValues[j+1] = current;
 
-      await sleep(delay);
+      delay !== undefined? await sleep(delay) : await sleep(0) ;
       setSortedValues([...sortedValues]);
     }
     setReset(false)
@@ -80,7 +110,7 @@ const SortingComponent: React.FC<ISortingProps> = ({arrayModel}) => {
 
         {arrayModel.length > 0 && arrayModel.map(num => (
           <span 
-            key={num} style={{height: `${num}rem`}} 
+            key={num} style={{height: `${num*3}%`}} 
             className={styles.spanNum}
             >
               {num}
@@ -90,6 +120,7 @@ const SortingComponent: React.FC<ISortingProps> = ({arrayModel}) => {
       </div>
       <div className={styles.sortingButtonsContainer}>
         <button disabled={isSorting} onClick={() => bubbleSorting()} className={styles.sortingButtons}>Bubble Sort</button>
+        <button disabled={isSorting} onClick={() => gnomeSort()} className={styles.sortingButtons}>Gnome Sort</button>
         <button disabled={isSorting} onClick={() => insertionSort()} className={styles.sortingButtons}>Insertion Sort</button>
         <button disabled={reset} className={styles.sortingButtons} onClick={() => handleReset(arrayModel)}>Reset</button>
         <label htmlFor="delay">Delay
