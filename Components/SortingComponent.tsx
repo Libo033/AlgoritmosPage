@@ -1,4 +1,3 @@
-// https://github.com/devoups-off/sorting-app/blob/master/src/App.tsx
 import React, { useEffect, useState } from 'react'
 import styles from '@/styles/Sorting.module.css'
 
@@ -12,13 +11,11 @@ const SortingComponent: React.FC<ISortingProps> = ({arrayModel}) => {
   const [isSorting, setIsSorting] = useState<boolean>(false)
   const [reset, setReset] = useState<boolean>(false)
   const [time, setTime] = useState(0)
-
+  
   const handleReset = (array: number[]) => {
     setReset(true)
     setSortedValues([...sortedValues]);
-    setSortedValues(
-      array.sort(() => Math.random() - 0.5)
-    )
+    setSortedValues( array.sort(() => Math.random() - 0.5) )
   }
 
   const bubbleSorting = async () => {

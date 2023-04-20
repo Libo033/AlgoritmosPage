@@ -3,9 +3,15 @@ import Layout from '../../Components/Layout'
 import styles from '@/styles/Sorting.module.css'
 import Link from 'next/link'
 import SortingComponent from '../../Components/SortingComponent'
+//1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33
 
 const sorting = () => {
-  const arrayModel: number[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33]
+  const arrayModel: number[] = []
+  if (arrayModel.length === 0) {
+    for (let i = 0; i < 100; i++) {
+      arrayModel.push(i+1)
+    }
+  }
 
   return (
     <Layout title='Ordenamiento'>
@@ -20,7 +26,7 @@ const sorting = () => {
           <h3>Algoritmos de Ordenamiento</h3>
         </div>
         <div className={styles.sortComponentContainer}>
-          <SortingComponent arrayModel={arrayModel} />
+          <SortingComponent arrayModel={arrayModel.slice(0, 33)} />
         </div>
       </div>
     </Layout>
