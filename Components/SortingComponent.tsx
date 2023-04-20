@@ -10,7 +10,7 @@ const SortingComponent: React.FC<ISortingProps> = ({arrayModel}) => {
   const [delay, setDelay] = useState<number>(10);
   const [isSorting, setIsSorting] = useState<boolean>(false)
   const [reset, setReset] = useState<boolean>(false)
-  const [time, setTime] = useState(0)
+  const [time, setTime] = useState<number>(0)
   
   const handleReset = (array: number[]) => {
     setReset(true)
