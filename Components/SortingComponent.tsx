@@ -77,13 +77,11 @@ const SortingComponent: React.FC<ISortingProps> = ({arrayModel}) => {
     let n = sortedValues.length;
 
     for (let i = 1; i < n; i++) {
-      // Choosing the first element in our unsorted subarray
       let current = sortedValues[i];
-      // The last element of our sorted subarray
       let j = i-1; 
       while ((j > -1) && (current < sortedValues[j])) {
         sortedValues[j+1] = sortedValues[j];
-          j--;
+        j--;
       }
       sortedValues[j+1] = current;
 

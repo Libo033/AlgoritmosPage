@@ -1,3 +1,4 @@
+/*#region SEARCHING-PAGE */
 .searchPage{
   width: 100%;
   height: 100vh;
@@ -26,3 +27,42 @@
   display: grid;
   place-content: center;
 }
+/*#endregion */
+
+/*#region SEARCHING-COMPONENT */
+.searchingComponent{
+  width: 100%;
+  height: 91vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchingAnimation{
+  background-color: rgb(30, 30, 30);
+  width: 98vw;
+  height: 75%;
+  border: 2.1px solid white;
+  border-radius: 9px;
+  box-shadow: inset 1px 2px 15px rgba(245, 245, 245, 0.45);
+  padding: 0.6rem;
+  margin-top: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 6px;
+}
+
+.spanNum{
+  border: 2.4px solid white;
+  border-radius: 6px;
+  color: black;
+  font-weight: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+}
+
+.searchingButtonsContainer{
+
+}
+/*#endregion */

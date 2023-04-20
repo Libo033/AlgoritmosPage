@@ -2,8 +2,14 @@ import React from 'react'
 import Layout from '../../Components/Layout'
 import styles from '@/styles/Searching.module.css'
 import Link from 'next/link'
+import SearchingComponent from '../../Components/SearchingComponent'
 
 const searching = () => {
+  const arrayModel: number[] = []
+  if (arrayModel.length === 0) {
+    for (let i = 0; i < 150; i++) arrayModel.push(i+1)
+  }
+
   return (
     <Layout title="Busqueda">
       <div className={styles.searchPage}>
@@ -17,7 +23,7 @@ const searching = () => {
           <h3>Algoritmos de Busqueda</h3>
         </div>
         <div className={styles.searchComponentContainer}>
-          
+          <SearchingComponent arrayModel={arrayModel} />
         </div>
       </div>
     </Layout>
