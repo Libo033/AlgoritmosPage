@@ -19,7 +19,12 @@ const Layout: React.FC<ILayoutProps> = ({children, title}) => {
   return (
     <>
       <Head>
+        <meta name="description" content="Web Page created by Valentin Libonati. - Email: valentinlibonati33@gmail.com. - Linkedin: https://www.linkedin.com/in/valentin-libonati-b608521b7/" />
+        <meta name="default-color" />
         <title>{titulo}</title>
+        <link rel="apple-touch-icon" sizes="256x256" href="/img/logosolo.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/img/logosolo.png" />
+        <link rel="shortcut icon" type="image/png" href="/img/logosolo.png" />
       </Head>
       <div className={roboto.className}>
         {children}
