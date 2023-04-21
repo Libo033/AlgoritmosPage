@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styles from '@/styles/Sorting.module.css'
-
-interface ISortingProps{
-  arrayModel: number[] 
-}
+import { ISortingProps } from '../lib/interfaces';
+import { sleep } from '../lib/helpers';
 
 const SortingComponent: React.FC<ISortingProps> = ({arrayModel}) => {
   const [sortedValues, setSortedValues] = useState<number[]>(arrayModel);
@@ -16,6 +14,7 @@ const SortingComponent: React.FC<ISortingProps> = ({arrayModel}) => {
     setReset(true)
     setSortedValues([...sortedValues]);
     setSortedValues( array.sort(() => Math.random() - 0.5) )
+    setTime(0)
   }
 
   const bubbleSorting = async () => {
@@ -93,10 +92,6 @@ const SortingComponent: React.FC<ISortingProps> = ({arrayModel}) => {
 
     let end = Date.now()
     setTime((-begin+end)/1000);
-  }
-
-  function sleep(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   return (

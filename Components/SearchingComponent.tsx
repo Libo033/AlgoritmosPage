@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import styles from '@/styles/Searching.module.css'
-
-interface ISortingProps{
-  arrayModel: number[] 
-}
+import { ISortingProps } from '../lib/interfaces'
+import { sleep } from '../lib/helpers'
 
 const SearchingComponent: React.FC<ISortingProps> = ({arrayModel}) => {
   const [delay, setDelay] = useState<number>(10)
@@ -16,13 +14,14 @@ const SearchingComponent: React.FC<ISortingProps> = ({arrayModel}) => {
   const handleReset = () => {
     setReset(true)
     setFindNum(0)
+    setTime(0)
   }
 
   const secuencialSearch = async () => {
     let begin = Date.now()
+
     setIsSearching(true)
     let i
-    
     if (numToSearch !== undefined) {
       for (i = 0; i < arrayModel.length + 1; i++) {
         delay !== undefined? await sleep(delay) : await sleep(0) ;
@@ -35,18 +34,18 @@ const SearchingComponent: React.FC<ISortingProps> = ({arrayModel}) => {
         setFindNum(0)
       }
     }
-
     setIsSearching(false)
+    setReset(false)
+
     let end = Date.now()
     setTime((-begin+end)/1000);
-    setReset(false)
   }
 
   const binarySearch = async () => {
     let begin = Date.now()
+
     setIsSearching(true)
     let start=0, end=arrayModel.length-1;
-    
     if (numToSearch !== undefined) {
       while (start<=end){
         let mid=Math.floor((start + end)/2);
@@ -61,26 +60,24 @@ const SearchingComponent: React.FC<ISortingProps> = ({arrayModel}) => {
         delay !== undefined? await sleep(delay) : await sleep(0) ;
       }
     }
-
     setIsSearching(false)
+    setReset(false)
+
     let endTime = Date.now()
     setTime((-begin+endTime)/1000);
-    setReset(false)
-  }
-
-  function sleep(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   return (
     <div className={styles.searchingComponent}>
       <div className={styles.searchingAnimation}>
+
         {arrayModel && arrayModel.map((num) => (
           <span 
             key={num} 
             className={findNum === num? styles.spanNumFound : styles.spanNum}
           >{num}</span>
         ))}
+        
       </div>
       <div className={styles.searchingButtonsContainer}>
       <button disabled={isSearching} className={styles.searchingButtons} onClick={() => secuencialSearch()}>Secuencial Search</button>
