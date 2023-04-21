@@ -68,6 +68,7 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .sortingButtons{
@@ -112,3 +113,51 @@
   width: 4.2rem;
 }
 /*#endregion */
+
+@media ( max-width: 800px ) {
+  /*#region SORTING-PAGE */
+  .goBack{
+    height: 7.2vh;
+  }
+
+  .sortComponentContainer{
+    height: 92.8vh;
+  }
+  /*#endregion */
+
+  /*#region SORTING-COMPONENT */
+  .sortingComponent{
+    height: 92.8vh;
+  }
+  
+  .sortingAnimation{
+    background-color: rgb(30, 30, 30);/**/
+    width: 99%;
+    border: 1.5px solid white;
+    box-shadow: inset 1px 2px 15px rgba(245, 245, 245, 0.45);/**/
+    padding: 0.3rem;
+    padding-bottom: 0;
+    margin-inline: 0.5%;
+  }
+  
+  .spanNum{
+    padding-top: 0.45rem;
+    width: 0.51rem;
+    font-size: 6px;
+    font-weight: 900;
+  }
+  
+  .sortingButtonsContainer{
+    height: fit-content;
+    margin-top: 0.6rem;
+    row-gap: 0.6rem;
+  }
+  
+  .sortingButtons{
+    padding-block: 0.6rem;
+    font-size: 17.1px;
+    padding-inline: 1.2rem;
+    border: 2.7px solid white;
+  }
+  /*#endregion */
+}

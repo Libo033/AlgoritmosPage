@@ -124,3 +124,54 @@
   width: 4.2rem;
 }
 /*#endregion */
+
+@media ( max-width: 600px ) {
+  /*#region SEARCHING-PAGE */
+  .goBack{
+    height: 7.2vh;
+  }
+
+  .goBackArrow{/**/
+    margin-inline: 0.9rem;
+    fill: white;
+  }
+
+  .searchComponentContainer{
+    height: 92vh;
+  }
+  /*#endregion */
+
+  /*#region SEARCHING-COMPONENT */
+  .searchingComponent{
+    height: 92vh;
+  }
+
+  .searchingAnimation{
+    width: 99vw;
+    height: 72%;
+    border: 1.8px solid white;
+    padding: 0.3rem;
+    margin-top: 0.9rem;
+  }
+
+  .spanNum{
+    font-size: 0.9rem;
+  }
+
+  .spanNumFound{
+    font-size: 0.9rem;
+  }
+
+  .searchingButtonsContainer{
+    height: 28%;
+    padding-top: 0.9rem;
+  }
+
+  .searchingButtons{
+    font-size: 17.1px;
+    padding-inline: 1.2rem;
+    border: 2.7px solid white;
+    margin-inline: 0.6rem;
+  }
+  /*#endregion */
+}
